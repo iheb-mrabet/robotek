@@ -1,0 +1,15 @@
+robot_name: mock-rover-01
+environment: staging
+max_speed_mps: 1.2
+debug: false
+emergency_stop_enabled: true
+default_mission_waypoints:
+  - name: dock
+    x: 0.0
+    y: 0.0
+  - name: inspection-point
+    x: 1.5
+    y: 0.5
+  - name: return
+    x: 0.0
+    y: 0.0

@@ -1,0 +1,5 @@
+max_allowed_speed_mps: 1.5
+require_emergency_stop: true
+forbid_debug_in:
+  - staging
+  - production

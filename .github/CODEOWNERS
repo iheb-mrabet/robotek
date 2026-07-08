@@ -1,0 +1,6 @@
+* @robot-devsecops/maintainers
+
+/security/ @robot-devsecops/security
+/docs/ @robot-devsecops/maintainers
+/robot_mock/ @robot-devsecops/robot-software
+/scripts/ @robot-devsecops/maintainers
