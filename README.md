@@ -1,105 +1,188 @@
 # Robot DevSecOps Template
 
-This repository is a generic DevSecOps CI/CD template for robotic software. It establishes the Phase 1 repository skeleton, governance documentation, security rules, local tooling, and a small mock robot application that future pipeline work can validate.
+This repository is a DevSecOps CI/CD template for robotic software.
 
-## Why the Mock Robot Exists
+The goal is to build and test a complete pipeline before using it on a real robot software repository.
 
-The real robot repositories are not available yet. The mock robot gives future CI/CD and DevSecOps stages something safe and realistic to test:
+Since the real robot code is not available yet, this project uses a small mock robot application as a safe testing target.
 
-- robot profile validation
-- safety rules
-- mission state transitions
-- health/status output
-- a minimal FastAPI interface
-- unit tests and coverage
+---
 
-The mock does not control hardware, run ROS 2 nodes, read sensors, move actuators, or deploy to a real robot.
+## Project Goal
 
-## Branch Model
+This project helps us build a CI/CD pipeline that can continuously check:
 
-Use trunk-based development. `main` is the only long-lived branch, and changes should merge through pull requests.
+* code quality
+* formatting
+* unit tests
+* test coverage
+* robot configuration safety
+* GitHub workflow behavior
 
-## Implemented Now
+---
 
-- repository skeleton
-- governance files
-- documentation
-- threat model
-- security rules and exception register
-- pre-commit configuration
-- Makefile commands
-- mock Python robot package
-- YAML robot configuration
-- configuration validation script
-- unit tests
+## Phase 1 — Done
 
-## Intentionally Not Implemented Yet
+Phase 1 prepared the base project.
 
-- GitHub Actions workflows
-- Dockerfile or container build
-- SBOM generation
-- image scanning
-- artifact signing
-- staging deployment
-- production deployment
-- real robot hardware integration
-- ROS 2 runtime integration
+We created:
 
-GitHub Actions CI is intentionally not created in Phase 1. Planned workflows are documented in `docs/github_actions_mapping.md`.
+* the repository structure
+* a mock robot application
+* robot configuration files
+* safety validation rules
+* unit tests
+* coverage checks
+* Makefile commands
+* basic documentation
+* security and governance files
 
-## Local Setup
+The mock robot is used as a safe target to test the pipeline.
+
+It does not control real hardware, sensors, actuators, ROS 2 nodes, or production robots.
+
+---
+
+## Mock Robot Purpose
+
+The mock robot allows us to test the pipeline before connecting it to real robot software.
+
+It includes:
+
+* health/status logic
+* mission start/status logic
+* safety rules
+* configuration validation
+* a small FastAPI interface
+* unit tests
+
+---
+
+## Phase 2 — In Progress
+
+Phase 2 is mostly done.
+
+The main goal of Phase 2 is local/CI parity:
+
+> What passes locally should also pass in GitHub Actions.
+
+The CI pipeline currently runs the same Makefile targets that developers can run locally.
+
+---
+
+## CI Checks
+
+The GitHub Actions pipeline runs these checks:
 
 ```bash
-make bootstrap
-```
-
-## Local Commands
-
-```bash
-make help
 make lint
-make format
-make test
-make coverage
-make validate-config
-make phase1-check
-make precommit
 ```
-...
-## Run the API Locally
+
+Checks Python code quality using Ruff.
+
+It catches common style issues, bad imports, and simple code problems.
 
 ```bash
-make run-api
+make format-check
 ```
 
-The API is served at `http://127.0.0.1:8000`.
+Checks if the code is correctly formatted.
 
-Endpoints:
+It does not modify files. It only fails if formatting is wrong.
 
-- `GET /health`
-- `GET /mission`
-- `POST /mission/start`
+```bash
+make coverage
+```
+
+Runs the unit tests with pytest and measures test coverage.
+
+This is the main testing gate of the pipeline. It checks that the mock robot logic, mission behavior, safety logic, and API behavior work correctly.
+
+The pipeline fails if tests fail or if coverage is below the required threshold.
+
+```bash
+make validate-config
+```
+
+Validates the mock robot configuration against the safety rules.
+
+This is the custom robot-safety gate of the project.
+
+Example: if `robot_profile.yaml` sets a robot speed higher than the allowed safety limit, this check must fail.
+
+---
 
 ## Configuration
 
-Default configuration files live in `robot_mock/configs/`:
+Robot configuration files are in:
 
-- `robot_profile.yaml`
-- `safety_rules.yaml`
-- `staging.env.example`
-
-Validate them locally:
-
-```bash
-make validate-config
+```text
+robot_mock/configs/
 ```
 
-## Phase 1 Check
+Main files:
 
-Run the local Phase 1 quality gate:
+* `robot_profile.yaml`
+* `safety_rules.yaml`
 
-```bash
-make phase1-check
+Example safety check:
+
+If `robot_profile.yaml` has:
+
+```yaml
+max_speed_mps: 5.0
 ```
 
-This runs linting, tests, and configuration validation. Later GitHub Actions workflows can call the same commands. (testing ci first time )
+but `safety_rules.yaml` allows only:
+
+```yaml
+max_allowed_speed_mps: 1.5
+```
+
+then the pipeline must fail.
+
+This proves the CI can block unsafe robot configuration before it reaches `main`.
+
+---
+
+## Branch Model
+
+`main` is the protected branch.
+
+The expected workflow is:
+
+```text
+create branch → open pull request → CI passes → merge to main
+```
+
+Direct pushes to `main` should be blocked.
+
+---
+
+## Not Implemented Yet
+
+Planned for later phases:
+
+* Docker build
+* SBOM generation
+* vulnerability scanning
+* artifact signing
+* deployment
+* ROS 2 integration
+* real robot integration
+* stronger supply-chain hardening
+
+---
+
+## Current Status
+
+Phase 1 is complete.
+
+Phase 2 is mostly complete.
+
+Current work is focused on improving:
+
+* CI failure messages
+* diagnostic artifacts
+* branch protection
+* workflow stability
