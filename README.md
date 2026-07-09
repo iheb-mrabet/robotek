@@ -65,7 +65,7 @@ make validate-config
 make phase1-check
 make precommit
 ```
-kl
+kl;
 ...
 test rule set 
 ## Run the API Locally
