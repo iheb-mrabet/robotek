@@ -36,7 +36,7 @@ coverage:
 	$(PYTHON) -m pytest --cov=robot_mock --cov-report=term-missing --cov-report=html --cov-fail-under=70
 
 validate-config:
-	$(PYTHON) scripts/validate_config.py
+	python scripts/validate_config.py --report-dir artifacts/ci
 
 run-api:
 	$(PYTHON) -m uvicorn robot_mock.app.api:app --reload --host 127.0.0.1 --port 8000
