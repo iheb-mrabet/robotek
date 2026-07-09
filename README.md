@@ -65,7 +65,7 @@ make validate-config
 make phase1-check
 make precommit
 ```
-
+...
 ## Run the API Locally
 
 ```bash
