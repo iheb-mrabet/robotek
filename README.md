@@ -52,7 +52,7 @@ GitHub Actions CI is intentionally not created in Phase 1. Planned workflows are
 ```bash
 make bootstrap
 ```
-
+k
 ## Local Commands
 
 ```bash
