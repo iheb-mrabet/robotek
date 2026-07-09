@@ -1,6 +1,6 @@
 robot_name: mock-rover-01
 environment: staging
-max_speed_mps: 1.2
+max_speed_mps: 3
 debug: false
 emergency_stop_enabled: true
 default_mission_waypoints:
