@@ -102,4 +102,4 @@ Run the local Phase 1 quality gate:
 make phase1-check
 ```
 
-This runs linting, tests, and configuration validation. Later GitHub Actions workflows can call the same commands.
+This runs linting, tests, and configuration validation. Later GitHub Actions workflows can call the same commands. (testing ci first time )
