@@ -47,6 +47,3 @@ python scripts/validate_config.py
 
 The script exits with status `0` for valid configuration and non-zero for invalid configuration.
 
-## Phase 1 Note
-
-GitHub Actions CI is intentionally not created yet. The Makefile commands are the local equivalents that future workflows can call.

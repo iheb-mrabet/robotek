@@ -1,10 +1,13 @@
 # Backlog
+## Phase 1: mock app , architecure 
+done; 
 
 ## Phase 2: CI Workflow
 
 - Add pull request CI workflow.
 - Run lint, format check, tests, coverage, and configuration validation.
 - Configure required status checks for `main`.
+status : in progress (80%)
 
 ## Phase 3: Security Workflow
 
@@ -12,7 +15,7 @@
 - Add dependency vulnerability scanning.
 - Add static analysis.
 - Add policy checks for security exceptions.
-
+ 
 ## Phase 4: Docker, SBOM, Scan, Signature
 
 - Add Dockerfile and container build workflow.

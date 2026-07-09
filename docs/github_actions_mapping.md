@@ -63,6 +63,3 @@ Planned jobs:
 - verify SBOM and signature
 - publish release notes
 
-## Phase 1 Boundary
-
-This repository intentionally contains no `.github/workflows/` files. Workflow implementation is reserved for a later phase.

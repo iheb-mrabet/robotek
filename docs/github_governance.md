@@ -1,6 +1,6 @@
 # GitHub Governance
 
-This document describes the intended repository settings. These settings are documented only; they are not automatically enforced by code in Phase 1.
+This document describes the intended repository settings. These settings are documented only; they are not automatically enforced by code .
 
 ## Branch Protection Target
 
@@ -66,6 +66,3 @@ Production should require stronger review and deployment approval than staging.
 
 Secrets must not be committed to the repository. Use GitHub Actions secrets or environment-scoped secrets when workflows are added. Local `.env` files must remain untracked.
 
-## Phase 1 Limitation
-
-No GitHub Actions workflows exist yet. Required status checks cannot be enforced until the workflows are implemented in later phases.

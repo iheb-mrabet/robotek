@@ -9,7 +9,7 @@ The current application is a small mock robot service. It does not connect to re
 ## Current Repository Structure
 
 - `.github/` contains repository governance templates, but no workflow files.
-- `docs/` contains architecture, governance, local usage, runbook, backlog, and ADR documentation.
+- `docs/` contains architecture, governance, local usage, runbook, backlog.
 - `security/` contains the threat model, security rules, and exception register.
 - `robot_mock/` contains a small Python mock robot application.
 - `scripts/` contains local validation utilities.
@@ -30,9 +30,6 @@ It exists so future pipeline stages can validate meaningful code without needing
 ## Future PR Gate
 
 The planned pull request gate will run local-equivalent checks such as linting, formatting, tests, coverage, configuration validation, dependency review, secret detection, and security scans.
-
-These checks are documented now and will be implemented later. No GitHub Actions workflows are created in Phase 1.
-
 ## Future Main Delivery Pipeline
 
 After pull request checks pass and changes merge to `main`, later phases will add packaging, container image creation, SBOM generation, image scanning, signature, staging deployment, smoke testing, and rollback procedures.
