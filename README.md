@@ -66,6 +66,7 @@ make phase1-check
 make precommit
 ```
 ...
+test rule set 
 ## Run the API Locally
 
 ```bash
