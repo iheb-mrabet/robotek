@@ -72,3 +72,13 @@ target-version = ["py311"]
 [tool.bandit]
 exclude_dirs = ["robot_mock/tests"]
 skips = []
+[tool.pytest.ini_options]
+testpaths = ["robot_mock/tests"]
+addopts = [
+  "--cov=robot_mock",
+  "--cov-report=term-missing",
+  "--cov-report=html",
+  "--cov-report=xml:coverage.xml",
+  "--junitxml=test-results.xml",
+  "--cov-fail-under=70"
+]
